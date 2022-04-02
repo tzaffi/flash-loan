@@ -71,6 +71,7 @@ def approval_program():
     # checks for more than one borrowing app calls
     def checkDup(n):
         return Seq(
+                                                       # looks like a bug:         vvvv               vvvv
             If(And(Gtxn[n].type_enum() == TxnType.ApplicationCall, Gtxn[n].application_id() == Btoi(contract_addr)),
                 If(num_calls.load() == Int(1), 
                     Reject(), 
